@@ -122,3 +122,28 @@ BEGIN
 END;
 /
 ```
+Parameterized cursor: we can send some parameters to the cursor so that we can open the cursor with different values.
+```
+DECLARE
+    e_empName EMP.emp_name%TYPE;
+    e_empSal EMP.emp_salary%TYPE;
+    CURSOR emp_cursor(e_id INT) IS SELECT emp_name, emp_salary FROM EMP WHERE emp_id=e_id;
+BEGIN
+    OPEN emp_cursor(1);
+    LOOP
+        FETCH emp_cursor INTO e_empName, e_empSal;
+        EXIT WHEN emp_cursor%ROWCOUNT > 2 OR emp_cursor%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE(e_empName || ': ' || e_empSal);
+    END LOOP;
+    CLOSE emp_cursor;
+        DBMS_OUTPUT.PUT_LINE('------------------------');
+    OPEN emp_cursor(2);
+    LOOP
+        FETCH emp_cursor INTO e_empName, e_empSal;
+        EXIT WHEN emp_cursor%ROWCOUNT > 2 OR emp_cursor%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE(e_empName || ': ' || e_empSal);
+    END LOOP;
+    CLOSE emp_cursor;    
+END;
+/
+```
