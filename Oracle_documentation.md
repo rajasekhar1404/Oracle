@@ -165,3 +165,27 @@ EXCEPTION
 END;
 /
 ```
+- EXCEPTION HANDLING: we can give our own exceptions by raising them.
+```
+DECLARE
+e_empName EMP.emp_name%TYPE;
+e_empSal EMP.emp_salary%TYPE;
+e_invalid EXCEPTION;
+BEGIN
+    UPDATE EMP SET emp_salary=15000 WHERE emp_salary=14400;
+    IF SQL%NOTFOUND THEN
+        RAISE e_invalid;
+    END IF;
+    
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+            DBMS_OUTPUT.PUT_LINE('No values are there with that id');
+    WHEN TOO_MANY_ROWS THEN
+            DBMS_OUTPUT.PUT_LINE('more values are there with that id');
+    WHEN e_invalid THEN
+            DBMS_OUTPUT.PUT_LINE('Excepted error found');
+    WHEN OTHERS THEN
+            DBMS_OUTPUT.PUT_LINE('Some error occured');
+END;
+/
+```
