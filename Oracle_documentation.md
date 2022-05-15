@@ -92,3 +92,16 @@ BEGIN
 END;
 /
 ```
+- Rowcount - it is used to count the number of rows affected by an action.
+```
+DECLARE
+cnt INT(5);
+BEGIN
+    UPDATE EMP SET emp_salary=13000 WHERE emp_id=2;
+    cnt := SQL%ROWCOUNT;
+    DBMS_OUTPUT.PUT_LINE(cnt || ' row afftected');
+END;
+/
+
+SELECT COUNT(*) FROM EMP WHERE emp_id>0;
+```
