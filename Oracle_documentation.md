@@ -122,7 +122,7 @@ BEGIN
 END;
 /
 ```
-Parameterized cursor: we can send some parameters to the cursor so that we can open the cursor with different values.
+- Parameterized cursor: we can send some parameters to the cursor so that we can open the cursor with different values.
 ```
 DECLARE
     e_empName EMP.emp_name%TYPE;
@@ -144,6 +144,24 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE(e_empName || ': ' || e_empSal);
     END LOOP;
     CLOSE emp_cursor;    
+END;
+/
+```
+- EXCEPTION HANDLING: there are two types of exception handling, explicit, implicit.
+```
+DECLARE
+e_empName EMP.emp_name%TYPE;
+e_empSal EMP.emp_salary%TYPE;
+BEGIN
+    SELECT emp_name, emp_salary INTO e_empName, e_empSal FROM EMP WHERE emp_id = 4;
+    DBMS_OUTPUT.PUT_LINE(e_empName || ': ' || e_empSal);
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+            DBMS_OUTPUT.PUT_LINE('No values are there with that id');
+    WHEN TOO_MANY_ROWS THEN
+            DBMS_OUTPUT.PUT_LINE('more values are there with that id');
+    WHEN OTHERS THEN
+            DBMS_OUTPUT.PUT_LINE('Some error occured');
 END;
 /
 ```
