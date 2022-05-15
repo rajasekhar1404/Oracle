@@ -92,7 +92,7 @@ BEGIN
 END;
 /
 ```
-- Rowcount - it is used to count the number of rows affected by an action.
+- Rowcount: it is used to count the number of rows affected by an action.
 ```
 DECLARE
 cnt INT(5);
@@ -104,4 +104,21 @@ END;
 /
 
 SELECT COUNT(*) FROM EMP WHERE emp_id>0;
+```
+- EXPLICIT CURSOR: It is used to get the data from perticular columns, we declare a cursor, then open, then FETCH, THEN CLOSE.
+```
+DECLARE
+    e_empName EMP.emp_name%TYPE;
+    e_empSal EMP.emp_salary%TYPE;
+    CURSOR emp_cursor IS SELECT emp_name, emp_salary FROM EMP;
+BEGIN
+    OPEN emp_cursor;
+    LOOP
+        FETCH emp_cursor INTO e_empName, e_empSal;
+        EXIT WHEN emp_cursor%ROWCOUNT > 2 OR emp_cursor%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE(e_empName || ': ' || e_empSal);
+    END LOOP;
+    CLOSE emp_cursor;
+END;
+/
 ```
