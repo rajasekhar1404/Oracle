@@ -20,9 +20,75 @@
     Ex: recordvalues EMP%ROWTYPE; - to store the row data;
     SELECT * INTO recordvalues FROM EMP WHERE emp_id = 2; - to send the row data into variable.
     DBMS_OUTPUT.PUT_LINE(rowvalues.emp_id || ' ' || rowvalues.emp_name || ' ' || rowvalues.emp_salary); - to print the row data.
+- It is not possible to get user input with livesql.
 
 ## Conditional statements;
 - Everything is same as in all other languages that i already know, the main differences are,
     1. it is not ELSE IF it is ELSIF.
     2. We need a THEN keyword for every IF condition.
     3. Every IF condition should end with END IF;
+
+- CASE
+```
+DECLARE
+num INT;
+name VARCHAR(20);
+BEGIN
+    num := 2;
+        name := CASE num
+        WHEN 1 THEN 'Rajasekhar'
+        WHEN 2 THEN 'Karampudi'
+        ELSE 'NONE'
+    END;
+    DBMS_OUTPUT.PUT_LINE(name);
+END;
+/
+```
+## Loops;
+- LOOP
+```
+DECLARE
+    num INT := 1;
+BEGIN
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(num);
+        num := num+1;
+        EXIT WHEN num > 15;
+    END LOOP;
+END;
+/
+```
+- While LOOP
+```
+DECLARE
+    num INT := 1;
+BEGIN
+    WHILE num <= 15 LOOP
+        DBMS_OUTPUT.PUT_LINE(num);
+        num := num+1;
+    END LOOP;
+END;
+/
+```
+- FOR LOOP
+```
+DECLARE
+    num INT := 1;
+BEGIN
+    FOR num IN 1..15 LOOP
+    DBMS_OUTPUT.PUT_LINE(num);
+    END LOOP;
+END;
+/
+```
+- FOR LOOP REVERSE
+```
+DECLARE
+    num INT := 1;
+BEGIN
+    FOR num IN REVERSE 1..15 LOOP
+    DBMS_OUTPUT.PUT_LINE(num);
+    END LOOP;
+END;
+/
+```
