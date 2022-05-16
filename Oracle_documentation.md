@@ -218,3 +218,24 @@ EXECUTE add_val(3, 'Rajkumar', 10000);
 
 SELECT * FROM EMP;
 ```
+- PROCEDURE CREATION: IN and OUT procedure creation.
+```
+SELECT * FROM EMP;
+
+CREATE OR REPLACE PROCEDURE val_check 
+(p_phone_no IN OUT VARCHAR2) IS 
+BEGIN
+    p_phone_no := '(' || SUBSTR(p_phone_no, 1, 3) || ')' || SUBSTR(p_phone_no, 4, 3) || '-' || SUBSTR(p_phone_no, 7);
+END;
+/
+
+DECLARE
+ v_phone_no VARCHAR2(15);
+ BEGIN
+    v_phone_no := '8465946463';
+    val_check(v_phone_no);
+    DBMS_OUTPUT.PUT_LINE(v_phone_no);
+END;
+/
+
+```
