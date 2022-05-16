@@ -237,5 +237,28 @@ DECLARE
     DBMS_OUTPUT.PUT_LINE(v_phone_no);
 END;
 /
+```
+- PACKAGES: Here is an example of creating an package.
+```
+SELECT * FROM EMP;
 
+CREATE OR REPLACE PACKAGE edit_emp IS
+    PROCEDURE add_emp(e_emp_id INT, e_emp_name VARCHAR);
+    PROCEDURE edit_emp(e_emp_id INT, e_emp_name VARCHAR);
+END edit_emp;
+
+CREATE OR REPLACE PACKAGE BODY edit_emp IS 
+    PROCEDURE add_emp(e_emp_id INT, e_emp_name VARCHAR) IS
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Employee added');
+END add_emp;
+    PROCEDURE edit_emp(e_emp_id INT, e_emp_name VARCHAR) IS
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Employee Updated');
+END edit_emp;
+END;
+/
+
+EXECUTE edit_emp.edit_emp(3, 'KARAMPUDI');
+EXECUTE edit_emp.add_emp(3, 'KARAMPUDI');
 ```
