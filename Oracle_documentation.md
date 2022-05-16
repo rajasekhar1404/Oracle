@@ -200,3 +200,21 @@ END;
 
 EXECUTE test_procedure;
 ```
+- CREATE PROCEDURE: this example is used to create a procedure which accepts parameters.
+```
+CREATE OR REPLACE PROCEDURE add_val
+(e_emp_id IN EMP.emp_id%TYPE,
+e_emp_name IN EMP.emp_name%TYPE,
+e_emp_salary IN EMP.emp_salary%TYPE)
+IS
+
+BEGIN
+    INSERT INTO EMP VALUES(e_emp_id, e_emp_name, e_emp_salary);
+    DBMS_OUTPUT.PUT_LINE('Data added');
+END;
+/
+
+EXECUTE add_val(3, 'Rajkumar', 10000);
+
+SELECT * FROM EMP;
+```
