@@ -279,3 +279,31 @@ BEGIN
 END;
 /
 ```
+- PACKAGE: Here is an example for overloading packages.
+```
+CREATE OR REPLACE PACKAGE custom_emp IS
+    PROCEDURE add_emp(emp_id INT);
+    PROCEDURE add_emp(emp_id INT, emp_name VARCHAR);
+    PROCEDURE add_emp(emp_id INT, emp_name VARCHAR, emp_salary INT);
+END custom_emp;
+
+CREATE OR REPLACE PACKAGE BODY custom_emp IS
+    PROCEDURE add_emp(emp_id INT) IS
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Employee added in 1');
+END add_emp;
+    PROCEDURE add_emp(emp_id INT, emp_name VARCHAR) IS
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Employee added in 2');
+END add_emp;
+    PROCEDURE add_emp(emp_id INT, emp_name VARCHAR, emp_salary INT) IS
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Employee added in 3');
+END add_emp;
+END;
+/
+
+EXECUTE custom_emp.add_emp(1);
+EXECUTE custom_emp.add_emp(1,'Rajkumar');
+EXECUTE custom_emp.add_emp(1,'Rajkumar', 15000);
+```
