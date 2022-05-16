@@ -262,3 +262,20 @@ END;
 EXECUTE edit_emp.edit_emp(3, 'KARAMPUDI');
 EXECUTE edit_emp.add_emp(3, 'KARAMPUDI');
 ```
+- BODYLESS PACKAGE: here is an example for bodyless package.
+```
+CREATE OR REPLACE PACKAGE global_constants IS
+    ml_to_km CONSTANT NUMBER := 1.5;
+    km_to_ml CONSTANT NUMBER := 0.5;
+END;
+/
+
+BEGIN
+    DBMS_OUTPUT.PUT_LINE(50 * global_constants.ml_to_km);
+END;
+/
+BEGIN
+    DBMS_OUTPUT.PUT_LINE(50 * global_constants.km_to_ml);
+END;
+/
+```
