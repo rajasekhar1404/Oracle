@@ -189,3 +189,14 @@ EXCEPTION
 END;
 /
 ```
+- CREATE PROCEDURE: We can create a set of block as a procedure, when ever we want those steps we can simple execute that procedure.
+```
+CREATE OR REPLACE PROCEDURE test_procedure IS
+
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('This is the test procedure');
+END;
+/
+
+EXECUTE test_procedure;
+```
