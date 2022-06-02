@@ -241,3 +241,32 @@ SELECT OrderID, Quantity, CASE WHEN Quantity > 30 THEN 'The quantity is greater 
 2. CASE ORDER BY
 SELECT CustomerName, City, Country FROM Customers ORDER BY (CASE WHEN City IS NULL THEN Country ELSE City END);
 ```
+- NULL
+```
+1. NVL()
+SELECT ProductName, UnitPrice * (UnitsInStock + NVL(UnitsOnOrder, 0)) FROM Products;
+2. COALESCE()
+SELECT ProductName, UnitPrice * (UnitsInStock + COALESCE(UnitsOnOrder, 0)) FROM Products;
+```
+- Stored Procedures
+```
+1. EXAMPLE 1
+CREATE PROCEDURE SelectAllCustomers
+AS
+SELECT * FROM Customers
+GO;
+EXEC SelectAllCustomers;
+2. Stored Procedure With Parameter
+CREATE PROCEDURE SelectAllCustomers @City nvarchar(30)
+AS 
+SELECT * FROM Customers WHERE City = @City
+GO;
+EXEC SelectAllCustomers @City = 'London';
+```
+- COMMENTS
+```
+--SELECT ALL
+/* SELECT
+ALL
+*/
+```
