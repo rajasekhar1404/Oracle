@@ -153,3 +153,34 @@ SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate FROM Orders INNE
 SELECT Orders.OrderID, Customers.CustomerName, Shippers.ShipperName FROM ((Orders INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID)
 INNER JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID);
 ```
+- LEFT JOIN
+```
+1. LEFT JOIN with ORDER BY
+SELECT Customers.CustomerName, Orders.OrderID FROM Customers LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID ORDER BY Customers.CustomerName;
+```
+- RIGHT JOIN
+```
+1. RIGHT JOIN with ORDER BY
+SELECT Orders.OrderID, Employees.LastName, Employees.FirstName FROM Orders RIGHT JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID ORDER BY Orders.OrderID;
+```
+- FULL JOIN
+```
+SELECT Customers.CustomerName, Orders.OrderID FROM Customers FULL OUTER JOIN Orders ON Customers.CustomerID=Orders.CustomerID ORDER BY Customers.CustomerName;
+```
+- SELF JOIN
+```
+SELECT A.CustomerName AS CustomerName1, B.CustomerName AS CustomerName2, A.City FROM Customers A, Customer B WHERE A.CustomerID <> B.CustomerID AND A.City = B.City ORDER BY A.City;
+```
+- UNION
+```
+1. UNION with ORDER BY
+SELECT City FROM Customers UNION SELECT City FROM Suppliers ORDER BY City;
+2. UNION ALL with ORDER BY
+SELECT City FROM Customers UNION ALL SELECT City FROM Suppliers ORDER BY city;
+3. UNION with WHERE
+SELECT City, Country FROM Customers WHERE Country='Germany' UNION SELECT City, Country FROM Suppliers WHERE Country='Germany' ORDER BY City;
+4. UNION ALL with WHERE
+SELECT City, Country FROM Customers WHERE Country='Germany' UNION ALL SELECT City, Country FROM Suppliers WHERE Country='Germany' ORDER BY City;
+5. UNION with AS
+SELECT 'Customer' AS Type, ContactName, City, Country FROM Customers UNION SELECT 'Supplier', ContactName, City, Country FROM Suppliers;
+```
