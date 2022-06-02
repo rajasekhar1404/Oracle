@@ -1,8 +1,12 @@
 # SQL Keywords
 ADD: Adds a column in an existing table
+
 ADD CONSTRAINT:	Adds a constraint after a table is already created
+
 ALL: Returns true if all of the subquery values meet the condition
+
 ALTER:	Adds, deletes, or modifies columns in a table, or changes the data type of a column in a table
+
 ALTER COLUMN:	Changes the data type of a column in a table
 ALTER TABLE:	Adds, deletes, or modifies columns in a table
 AND:	Only includes rows where both conditions is true
