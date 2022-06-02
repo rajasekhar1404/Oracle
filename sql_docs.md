@@ -113,3 +113,43 @@ SELECT * FROM Customers WHERE CustomerName LIKE '[!bsp]%';
 or
 SELECT * FROM Customers WHERE CustomerName NOT LIKE '[bsp]%';
 ```
+- IN
+```
+1. IN with WHERE
+SELECT * FROM Customers WHERE Country IN ('Germany', 'France', 'UK');
+2. NOT IN with WHERE
+SELECT * FROM Customers WHERE Country NOT IN ('Germany', 'France', 'UK');
+3. IN with SELECT 
+SELECT * FROM Customers WHERE Country IN (SELECT Country FROM Suppliers);
+```
+- BETWEEN
+```
+1. NOT BETWEEN
+SELECT * FROM Products WHERE Price NOT BETWEEN 10 AND 20;
+2. BETWEEN with IN
+SELECT * FROM Products WHERE Price BETWEEN 10 AND 20 AND CategoryID NOT IN (1,2,3);
+3. BETWEEN With text values
+SELECT * FROM Products WHERE ProductName BETWEEN 'Carnavon Trigers' AND 'Mozzarella di Giovanni' ORDER BY ProductName;
+4. NOT BETWEEN with text values
+SELECT * FROM Products WHERE ProductName NOT BETWEEN 'Carnavon Trigers' AND 'Mozzarella di Giovanni' ORDER BY ProductName;
+5. BETWEEN Dates
+SELECT * FROM Orders WHERE OrderDate BETWEEN #07/01/1996# AND #07/31/1996#; or
+SELECT * FROM Orders WHERE OrderDate BETWEEN '07/01/1996' AND '07/31/1996';
+```
+- ALIASES (AS)
+```
+1. AS with Column
+SELECT CustomerName AS Customer, ContactName AS [Contact Person] FROM Customers;
+2. AS with Concatenation
+SELECT CustomerName, (Adress || ', ' || PostalCode || ' ' || City || ', '||Country) AS Address FROM Customers;
+3. AS with Table name
+SELECT o.OrderID, o.OrderDate, c.CustomerName FROM Customers AS c, Orders AS o WHERE c.CustomerName='Around the Horn' AND c.CustomerID=o.CustomerID;
+```
+- JOIN
+```
+1. INNER JOIN 
+SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate FROM Orders INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;
+2. INNER JOIN with 3 tables
+SELECT Orders.OrderID, Customers.CustomerName, Shippers.ShipperName FROM ((Orders INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID)
+INNER JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID);
+```
