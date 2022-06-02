@@ -184,3 +184,60 @@ SELECT City, Country FROM Customers WHERE Country='Germany' UNION ALL SELECT Cit
 5. UNION with AS
 SELECT 'Customer' AS Type, ContactName, City, Country FROM Customers UNION SELECT 'Supplier', ContactName, City, Country FROM Suppliers;
 ```
+- GROUP BY
+```
+1. GROUP BY
+SELECT COUNT(CustomerID), Country FROM Customers GROUP BY Country;
+2. GROUP BY with ORDER BY
+SELECT COUNT(CustomerID), Country FROM Customers GROUP BY Country ORDER BY COUNT(CustomerID) DESC;
+3. GROUP BY with JOIN
+SELECT Shippers.ShipperName, COUNT(Orders.OrderID) AS NumberOfOrders FROM Orders LEFT JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID GROUP BY ShipperName;
+```
+- HAVING
+```
+1. HAVING with GROUP BY
+SELECT COUNT(CustomerID), Country FROM Customers GROUP BY Country HAVING COUNT(CustomerID) > 5;
+2. HAVING with GROUP BY AND ORDER BY
+SELECT COUNT(CustomerID), Country FROM Customers GROUP BY Country HAVING COUNT(CustomerID) > 5 ORDER BY COUNT(CustomerID) DESC;
+```
+- EXISTS
+```
+1. EXISTS
+SELECT SupplierName FROM Suppliers WHERE EXISTS (SELECT ProductName FROM Products WHERE Products.SupplierID = SupplierID AND Price < 20);
+```
+- ANY, ALL
+```
+1. ANY
+SELECT ProductName FROM Products WHERE ProductID = ANY (SELECT ProductID FROM OrderDetails WHERE Quantity = 10);
+2. ALL
+SELECT ALL ProductName FROM Products WHERE TRUE;
+3. ALL another EX
+SELECT ProductName FROM Products WHERE ProductID = ALL(SELECT ProductID FROM OrderDetails WHERE Quantity = 10);
+```
+- SELECT INTO
+```
+1. SELECT INTO
+SELECT * INTO CustomersBackup2017 FROM Customers;
+2. SELECT INTO with IN
+SELECT * INTO  CustomersBackup2017 IN 'Backup.mdb' FROM Customers;
+3. SELECT INTO with WHERE
+SELECT * INTO CustomersGermany FROM Customers WHERE Country = 'Germany';
+4. SELECT INTO with JOIN
+SELECT Customers.CustomerName, Orders.OrderID INTO CustomersOrderBackup2017 FROM Customers LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+5. SELECT INTO for creating a new table with same columns
+SELECT * INTO newtable FROM oldtable WHERE 1=0;
+```
+- INSERT INTO SELECT
+```
+1. INSERT INTO SELECT
+INSERT INTO Customers(CustomerName, City, Country) SELECT SupplierName, City, Country FROM Suppliers;
+2. INSERT INTO SELECT with WHERE
+INSERT INTO Customers(CustomerName, City, Country) SELECT SupplierName, City, Country FROM Suppliers WHERE Country = 'Germany';
+```
+- CASE
+```
+1. CASE
+SELECT OrderID, Quantity, CASE WHEN Quantity > 30 THEN 'The quantity is greater than 30' WHEN Quantity = 30 THEN 'The quantity is 30' ELSE 'The quantity is under 30' END AS QuantityText FROM OrderDetails;
+2. CASE ORDER BY
+SELECT CustomerName, City, Country FROM Customers ORDER BY (CASE WHEN City IS NULL THEN Country ELSE City END);
+```
