@@ -1,3 +1,184 @@
+# SQL Keywords
+ADD: Adds a column in an existing table
+ADD CONSTRAINT:	Adds a constraint after a table is already created
+ALL: Returns true if all of the subquery values meet the condition
+ALTER:	Adds, deletes, or modifies columns in a table, or changes the data type of a column in a table
+ALTER COLUMN:	Changes the data type of a column in a table
+ALTER TABLE:	Adds, deletes, or modifies columns in a table
+AND:	Only includes rows where both conditions is true
+ANY:	Returns true if any of the subquery values meet the condition
+AS:	Renames a column or table with an alias
+ASC:	Sorts the result set in ascending order
+BACKUP DATABASE:	Creates a back up of an existing database
+BETWEEN:	Selects values within a given range
+CASE:	Creates different outputs based on conditions
+CHECK:	A constraint that limits the value that can be placed in a column
+COLUMN:	Changes the data type of a column or deletes a column in a table
+CONSTRAINT:	Adds or deletes a constraint
+CREATE:	Creates a database, index, view, table, or procedure
+CREATE DATABASE:	Creates a new SQL database
+CREATE INDEX:	Creates an index on a table (allows duplicate values)
+CREATE OR REPLACE VIEW:	Updates a view
+CREATE TABLE:	Creates a new table in the database
+CREATE PROCEDURE:	Creates a stored procedure
+CREATE UNIQUE INDEX:	Creates a unique index on a table (no duplicate values)
+CREATE VIEW:	Creates a view based on the result set of a SELECT statement
+DATABASE:	Creates or deletes an SQL database
+DEFAULT:	A constraint that provides a default value for a column
+DELETE:	Deletes rows from a table
+DESC:	Sorts the result set in descending order
+DISTINCT:	Selects only distinct (different) values
+DROP:	Deletes a column, constraint, database, index, table, or view
+DROP COLUMN:	Deletes a column in a table
+DROP CONSTRAINT:	Deletes a UNIQUE, PRIMARY KEY, FOREIGN KEY, or CHECK constraint
+DROP DATABASE:	Deletes an existing SQL database
+DROP DEFAULT:	Deletes a DEFAULT constraint
+DROP INDEX:	Deletes an index in a table
+DROP TABLE:	Deletes an existing table in the database
+DROP VIEW:	Deletes a view
+EXEC:	Executes a stored procedure
+EXISTS:	Tests for the existence of any record in a subquery
+FOREIGN KEY:	A constraint that is a key used to link two tables together
+FROM:	Specifies which table to select or delete data from
+FULL OUTER JOIN:	Returns all rows when there is a match in either left table or right table
+GROUP BY:	Groups the result set (used with aggregate functions: COUNT, MAX, MIN, SUM, AVG)
+HAVING:	Used instead of WHERE with aggregate functions
+IN:	Allows you to specify multiple values in a WHERE clause
+INDEX:	Creates or deletes an index in a table
+INNER JOIN:	Returns rows that have matching values in both tables
+INSERT INTO:	Inserts new rows in a table
+INSERT INTO SELECT:	Copies data from one table into another table
+IS NULL:	Tests for empty values
+IS NOT NULL:	Tests for non-empty values
+JOIN:	Joins tables
+LEFT JOIN:	Returns all rows from the left table, and the matching rows from the right table
+LIKE:	Searches for a specified pattern in a column
+LIMIT:	Specifies the number of records to return in the result set
+NOT:	Only includes rows where a condition is not true
+NOT NULL:	A constraint that enforces a column to not accept NULL values
+OR:	Includes rows where either condition is true
+ORDER BY:	Sorts the result set in ascending or descending order
+OUTER JOIN:	Returns all rows when there is a match in either left table or right table
+PRIMARY KEY:	A constraint that uniquely identifies each record in a database table
+PROCEDURE:	A stored procedure
+RIGHT JOIN:	Returns all rows from the right table, and the matching rows from the left table
+ROWNUM:	Specifies the number of records to return in the result set
+SELECT:	Selects data from a database
+SELECT DISTINCT:	Selects only distinct (different) values
+SELECT INTO:	Copies data from one table into a new table
+SELECT TOP:	Specifies the number of records to return in the result set
+SET:	Specifies which columns and values that should be updated in a table
+TABLE:	Creates a table, or adds, deletes, or modifies columns in a table, or deletes a table or data inside a table
+TOP:	Specifies the number of records to return in the result set
+TRUNCATE TABLE:	Deletes the data inside a table, but not the table itself
+UNION:	Combines the result set of two or more SELECT statements (only distinct values)
+UNION ALL:	Combines the result set of two or more SELECT statements (allows duplicate values)
+UNIQUE:	A constraint that ensures that all values in a column are unique
+UPDATE:	Updates existing rows in a table
+VALUES:	Specifies the values of an INSERT INTO statement
+VIEW:	Creates, updates, or deletes a view
+WHERE:	Filters a result set to include only records that fulfill a specified condition
+
+- CREATE DATABASE
+```
+CREATE DATABASE testDB;
+```
+- DROP DATABASE
+```
+DROP DATABASE testDB;
+```
+- BACKUP DATABASE
+```
+BACKUP DATABASE testDB TO DISK = 'c/user/rajasekhar/testDB2.bak';
+```
+- CREATE TABLE
+```
+1. CREATE new Table
+CREATE TABLE Persons (PersonID INT, LastName VARCHAR2(20), FirstName VARCAHR2(20), Address VARCHAR2(20), City VARCHAR2(20));
+2. CREATE table from existing table
+CREATE TABLE testDB AS SELECT * FROM Customers WHERE 1=0;
+```
+- DROP TABLE
+```
+DROP TABLE testDB;
+```
+- ALTER TABLE
+```
+1. ADD
+ALTER TABLE Customers ADD Email VARCHAR2(50);
+2. DROP COLUMN
+ALTER TABLE Customers DROP COLUMN Email;
+3. MODIFY COLUMN
+ALTER TABLE Customers MODIFY COLUMN Email INT;
+```
+- CONSTRAINTS
+```
+1. NOT NULL - Ensures that a column cannot have a NULL value
+2. UNIQUE - Ensures that all values in a column are different
+3. PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+4. FOREIGN KEY - Prevents actions that would destroy links between tables
+5. CHECK - Ensures that the values in a column satisfies a specific condition
+6. DEFAULT - Sets a default value for a column if no value is specified
+7. CREATE INDEX - Used to create and retrieve data from the database very quickly
+```
+- NOT NULL
+```
+CREATE TABLE Persons (ID INT NOT NULL, LastName VARCHAR2(30) NUT NULL, FirstName VARCHAR2(25) NOT NULL, Age INT);
+```
+- UNIQUE
+```
+1. UNIQUE
+CREATE TABLE Persons(ID INT NOT NULL UNIQUE, LastName VARCHAR2(200) NOT NULL, FirstName VARCHAR2(200), Age INT);
+2. Name a CONSTRAINT
+CREATE TABLE Persons(ID INT NOT NULL, LastName VARCHAR2(100) NOT NULL, FirstName VARCHAR2(200), Age INT, CONSTRAINT UC_Persons UNIQUE(ID, LastName));
+3. DROP CONSTRAINT
+ALTER TABLE Persons DROP CONSTRAINT UC_Persons;
+```
+- PRIMARY KEY
+```
+CREATE TABLE Persons (ID INT NOT NULL PRIMARY KEY, LastName VARCHAR2(200) NOT NULL, FirstName VARCHAR2(200), Age INT);
+```
+- FOREIGN KEY
+```
+CREATE TABLE Orders (OrderID INT NOT NULL, OrderNumber INT NOT NULL, PersonID INT FOREIGN KEY REFERENCES Persons(PersonID));
+```
+- CHECK
+```
+1. CHECK Age
+CREATE TABLE Persons (ID INT NOT NULL, LastName VARCHAR2(200) NOT NULL, FirstName VARCHAR2(200), Age INT, CHECK (Age >= 18));
+2. CHECK Multiple columns
+CREATE TABLE Persons (ID INT NOT NULL, LastName VARCHAR2(200) NOT NULL, FirstName VARCHAR2(200), Age INT, City VARCHAR2(200), CONSTRAINT CHK_Person CHECK (Age > 18 AND City = 'Sandnes'));
+```
+- DEFAULT
+```
+1. DEFALUT
+CREATE TABLE Persons (ID INT NOT NULL, LastName VARCHAR2(200) NOT NULL, FirstName VARCHAR2(200), Age INT, City VARCHAR2(200) DEFAULT 'Sandnes');
+2. DEFALUT GETDATE()
+CREATE TABLE Orders (ID INT NOT NULL, OrderNumber INT NOT NULL, OrderDate DEFAULT GETDATE());
+```
+- INDEX
+```
+CREATE INDEX idx_name ON Persons (LastName, FirstName);
+```
+- AUTO INCREMENT
+```
+CREATE SEQUENCE seq_person MINVALUE 1 START WITH 1 INCREMENT BY 1 CACHE 10;
+INSERT INTO Persons VALUES(seq_person.NEXTVAL, 'Lars', 'Monsen');
+```
+- DATE
+```
+1. DATE - format YYYY-MM-DD
+2. DATETIME - format: YYYY-MM-DD HH:MI:SS
+3. SMALLDATETIME - format: YYYY-MM-DD HH:MI:SS
+4. TIMESTAMP - format: a unique number
+SELECT * FROM Orders WHERE OrderDate = '2008-11-11';
+```
+- VIEWS
+```
+1. CREATE VIEW
+CREATE VIEW [Brazil Customers] AS SELECT CustomerName, ContactName FROM Customers WHERE Country = 'Brazil';
+SELECT * FROM [Brazil Customers];
+```
 - WHERE
 ```
 1. WHERE
