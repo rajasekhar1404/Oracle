@@ -29,9 +29,83 @@ FROM buyer
 GROUP BY buyer
 HAVING COUNT(buyer) > 1;
 
+--
+SELECT * FROM BUYER WHERE ROWID NOT IN (
+SELECT MAX(ROWID) FROM Buyer GROUP BY buyer);
 
+--
+SELECT * FROM Employee WHERE ROWID NOT IN (
+SELECT MAX(ROWID) FROM employee GROUP BY salary);
 
-DELETE FROM buyer WHERE rowid not in(
-SELECT MAX(rowid)
-FROM buyer 
-GROUP BY buyer);
+--
+SELECT COUNT(EMP_ID) FROM employee GROUP BY emp_id HAVING COUNT(emp_id) = 1;
+
+--
+SELECT * FROM ALL_OBJECTS WHERE OBJECT_TYPE = 'TABLE' AND OBJECT_NAME = 'EMPLOYEE';
+
+--
+SELECT * FROM ALL_TABLES WHERE TABLE_NAME = 'EMPLOYEE';
+
+--
+CREATE TABLE temp AS SELECT * FROM Employee WHERE 1 = 2;
+SELECT * FROM temp;
+DESCRIBE EMPLOYEE;
+DROP TABLE temp;
+
+--
+SELECT * FROM USER_SOURCE;
+DROP PROCEDURE proc_1;
+DROP PACKAGE pk_1;
+
+--
+SELECT ORA_DATABASE_NAME FROM DUAL;
+SELECT * FROM GLOBAL_NAME;
+SELECT NAME FROM V$DATABASE;
+
+--
+SELECT * FROM employee WHERE emp_id NOT IN (
+SELECT EMP_ID FROM employee WHERE ROWNUM <= 5);
+
+--
+SELECT * FROM(
+SELECT ROWNUM rno, e.* FROM employee e ORDER BY rno DESC) WHERE rno > 5;
+
+SELECT * FROM Employee WHERE ROWNUM <=5 ORDER BY EMP_ID DESC;
+
+SELECT DISTINCT salary FROM employee ORDER BY salary DESC;
+
+--
+SELECT * FROM (
+SELECT ROWNUM rno, e.* FROM employee e) WHERE MOD(rno, 2) != 0;
+
+SELECT * FROM employee WHERE MOD(emp_id, 2) <> 0;
+
+--
+SELECT MOD(4, 2) FROM DUAL;
+
+SELECT * FROM Departments WHERE dept_name NOT IN (SELECT DISTINCT dept_name FROM employee);
+
+--
+select * from Employee a where  rowid = 
+(select max(rowid) from Employee b where  a.salary=b.salary);
+
+SELECT * FROM Employee a WHERE ROWID = (
+SELECT MAX(ROWID) FROM employee b WHERE b.SALARY = a.SALARY);
+
+--
+Select Substr('ORACLE',Level,2) From Dual
+Connect By Level<= Length('ORACLE');
+
+SELECT MAX(SALARY), DEPT_NAME FROM EMPLOYEE GROUP BY DEPT_NAME;
+
+SELECT RPAD('R', 3,'A') FROM DUAL;
+SELECT RPAD('*', ROWNUM, '*') FROM employee WHERE ROWNUM <= 5;
+
+--
+SELECT LEVEL FROM DUAL CONNECT BY LEVEL <= 100;
+
+CREATE TABLE temp_emp AS SELECT * FROM EMPLOYEE WHERE 2 = 1;
+
+SELECT * FROM temp_emp;
+
+DROP TABLE temp_emp;

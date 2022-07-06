@@ -1,0 +1,12 @@
+Create a table to which you want to load the data with same datatypes.
+create a ctl file as below
+
+LOAD DATA
+INFILE 'D:\Learning_journy\SQL_PL_SQL\Learning_programs\Oracle\SQL\test.csv'
+TRUNCATE
+INTO TABLE temp_emp
+FIELDS TERMINATED BY ","
+(emp_id, emp_name, dept_name, salary)
+
+Then open cmd and run
+sqlldr userid=SYSTEM/admin control='D:\stuff\delete_later\load_data.ctl' skip=1
