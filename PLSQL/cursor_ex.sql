@@ -1,5 +1,5 @@
 DECLARE
-    CURSOR emp_cur IS SELECT * FROM Employee WHERE Dept_name = :dept;
+    CURSOR emp_cur IS SELECT * FROM Employee WHERE Dept_name = 'IT';
     emp_info Employee%ROWTYPE;
 BEGIN
     OPEN emp_cur;
