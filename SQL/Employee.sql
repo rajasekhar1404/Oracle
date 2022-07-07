@@ -96,3 +96,23 @@ WHERE ROWID NOT IN (
                     GROUP BY email);
 
 SELECT COUNT(*) FROM employee GROUP BY email HAVING COUNT(*) > 1;
+
+--printing values as csv
+SELECT COUNTY FROM employee WHERE COUNTY LIKE '%|%';
+SELECT CITY FROM employee WHERE CITY LIKE '%|%';
+SELECT COMPANY_NAME FROM employee WHERE COMPANY_NAME LIKE '%|%';
+
+CREATE TABLE employee_temp AS SELECT * FROM employee;
+
+UPDATE employee_temp SET COUNTY = REPLACE(COUNTY, ',', '|')
+WHERE COUNTY LIKE '%,%';
+
+UPDATE employee_temp SET CITY = REPLACE(CITY, ',', '|')
+WHERE CITY LIKE '%,%';
+
+UPDATE employee_temp SET COMPANY_NAME = REPLACE(COMPANY_NAME, ',', '|')
+WHERE COMPANY_NAME LIKE '%,%';
+
+SELECT * FROM employee_temp;
+
+drop table employee_temp;
