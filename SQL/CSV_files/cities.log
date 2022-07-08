@@ -1,0 +1,60 @@
+
+SQL*Loader: Release 11.2.0.2.0 - Production on Fri Jul 8 15:10:10 2022
+
+Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
+
+Control File:   D:\Learning_journy\SQL_PL_SQL\Learning_programs\Oracle\SQL\CSV_files\cities.ctl
+Data File:      D:\Learning_journy\SQL_PL_SQL\Learning_programs\Oracle\SQL\CSV_files\cities100.csv
+  Bad File:     D:\Learning_journy\SQL_PL_SQL\Learning_programs\Oracle\SQL\CSV_files\cities100.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 1
+Errors allowed: 50
+Bind array:     64 rows, maximum of 256000 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table CITIES_USA, loaded from every logical record.
+Insert option in effect for this table: TRUNCATE
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+USPS                                FIRST     *   ,       CHARACTER            
+GEOID                                NEXT     *   ,       CHARACTER            
+ANSICODE                             NEXT     *   ,       CHARACTER            
+NAME                                 NEXT     *   ,       CHARACTER            
+LSAD                                 NEXT     *   ,       CHARACTER            
+FUNCSTAT                             NEXT     *   ,       CHARACTER            
+POP10                                NEXT     *   ,       CHARACTER            
+HU10                                 NEXT     *   ,       CHARACTER            
+ALAND                                NEXT     *   ,       CHARACTER            
+AWATER                               NEXT     *   ,       CHARACTER            
+ALAND_SQMI                           NEXT     *   ,       CHARACTER            
+AWATER_SQMI                          NEXT     *   ,       CHARACTER            
+INTPTLAT                             NEXT     *   ,       CHARACTER            
+INTPTLONG                            NEXT     *   ,       CHARACTER            
+
+
+Table CITIES_USA:
+  100 Rows successfully loaded.
+  0 Rows not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  0 Rows not loaded because all fields were null.
+
+
+Space allocated for bind array:                 231168 bytes(64 rows)
+Read   buffer bytes: 1048576
+
+Total logical records skipped:          1
+Total logical records read:           100
+Total logical records rejected:         0
+Total logical records discarded:        0
+
+Run began on Fri Jul 08 15:10:10 2022
+Run ended on Fri Jul 08 15:10:10 2022
+
+Elapsed time was:     00:00:00.06
+CPU time was:         00:00:00.01
