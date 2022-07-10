@@ -1,0 +1,58 @@
+
+SQL*Loader: Release 11.2.0.2.0 - Production on Sun Jul 10 16:47:01 2022
+
+Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
+
+Control File:   D:\Learning_journy\SQL_PL_SQL\Learning_programs\Oracle\SQL\CSV_files\load_usa.ctl
+Data File:      D:\Learning_journy\SQL_PL_SQL\Learning_programs\Oracle\SQL\CSV_files\us_500.csv
+  Bad File:     D:\Learning_journy\SQL_PL_SQL\Learning_programs\Oracle\SQL\CSV_files\us_500.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 1
+Errors allowed: 50
+Bind array:     64 rows, maximum of 256000 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table USA_TEMP, loaded from every logical record.
+Insert option in effect for this table: TRUNCATE
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+FIRST_NAME                          FIRST     *   ,       CHARACTER            
+LAST_NAME                            NEXT     *   ,       CHARACTER            
+COMPANY_NAME                         NEXT     *   ,       CHARACTER            
+ADDRESS                              NEXT     *   ,       CHARACTER            
+CITY                                 NEXT     *   ,       CHARACTER            
+COUNTY                               NEXT     *   ,       CHARACTER            
+STATE                                NEXT     *   ,       CHARACTER            
+ZIP                                  NEXT     *   ,       CHARACTER            
+PHONE1                               NEXT     *   ,       CHARACTER            
+PHONE2                               NEXT     *   ,       CHARACTER            
+EMAIL                                NEXT     *   ,       CHARACTER            
+WEB                                  NEXT     *   ,       CHARACTER            
+
+
+Table USA_TEMP:
+  0 Rows successfully loaded.
+  0 Rows not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  0 Rows not loaded because all fields were null.
+
+
+Space allocated for bind array:                 198144 bytes(64 rows)
+Read   buffer bytes: 1048576
+
+Total logical records skipped:          1
+Total logical records read:             0
+Total logical records rejected:         0
+Total logical records discarded:        0
+
+Run began on Sun Jul 10 16:47:01 2022
+Run ended on Sun Jul 10 16:47:01 2022
+
+Elapsed time was:     00:00:00.04
+CPU time was:         00:00:00.03

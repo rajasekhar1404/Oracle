@@ -2,7 +2,7 @@ Create a table to which you want to load the data with same datatypes.
 create a ctl file as below
 
 LOAD DATA
-INFILE 'D:\Learning_journy\SQL_PL_SQL\Learning_programs\Oracle\SQL\test.csv'
+INFILE 'D:\Learning_journy\SQL_PL_SQL\Learning_programs\Oracle\SQL\CSV_fil'
 TRUNCATE
 INTO TABLE temp_emp
 FIELDS TERMINATED BY ","
